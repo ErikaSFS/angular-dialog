@@ -17,11 +17,30 @@ export class AppComponent {
 
 
 onOpenDialogClick() {
-  this.matDialog.open(GreetingsComponent,
+  let dialogRef = this.matDialog.open(GreetingsComponent,
   {
-      data: 10
+      data:{
+        age:13,
+        name: "Giana"
+      },
+
+      width: "500px",
+      height: "500px",
+      position: {
+        top: "0",
+        left: "0"
+      },
+
+      disableClose: true,
+      hasBackdrop: false
   }
 );
+
+
+  dialogRef.afterClosed().subscribe(
+  result=> {
+  }
+  );
 }
 }
 

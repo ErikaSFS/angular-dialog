@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA} from '@angular/material/dialog';
-import { inject } from 'vue';
+import { MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
+
 
 
 @Component({
@@ -9,12 +9,19 @@ import { inject } from 'vue';
   styleUrls: ['./greetings.component.css']
 })
 export class GreetingsComponent implements OnInit{
-    constructor(@Inject (MAT_DIALOG_DATA)private data:number 
+    constructor(@Inject (MAT_DIALOG_DATA)public data:{age: number, name: string},
+    private matDialogRef: MatDialogRef<GreetingsComponent>
     ) { }
 
 
 
     ngOnInit(): void {
-      alert(this.data);
+    }
+
+    ngOnDestroy(){
+      this.matDialogRef.close(this.data);
+    }
+    onCloseClick(){
+      this.matDialogRef.close();
     }
   }
